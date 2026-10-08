@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Next.js build output
+.next/
+**/.next/
+out/
+build/
+
+# Local Environment Variables
+.env.local
+.env*.local
+**/.env.local
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS metadata
+.DS_Store
+Thumbs.db

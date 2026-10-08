@@ -1,0 +1,32 @@
+<svg 
+   id="hostel-map-svg" 
+   viewBox="0 0 400 300" 
+   xmlns="http://www.w3.org/2000/svg">
+    
+    <rect width="400" height="300" fill="#f4f4f4" />
+    
+    <rect x="150" y="20" width="100" height="260" fill="#ddd" />
+    <text x="200" y="150" class="map-label" text-anchor="middle">CORRIDOR</text>
+
+    <g id="left-wing">
+        <rect id="room-101" class="room" x="50" y="30" width="100" height="70" />
+        <text x="100" y="70" class="room-label">101</text>
+        
+        <rect id="room-102" class="room" x="50" y="115" width="100" height="70" />
+        <text x="100" y="155" class="room-label">102</text>
+        
+        <rect id="room-103" class="room" x="50" y="200" width="100" height="70" />
+        <text x="100" y="240" class="room-label">103</text>
+    </g>
+    
+    <g id="right-wing">
+        <rect id="room-104" class="room" x="250" y="30" width="100" height="70" />
+        <text x="300" y="70" class="room-label">104</text>
+        
+        <rect id="room-105" class="room" x="250" y="115" width="100" height="70" />
+        <text x="300" y="155" class="room-label">105</text>
+        
+        <rect id="room-106" class="room" x="250" y="200" width="100" height="70" />
+        <text x="300" y="240" class="room-label">106</text>
+    </g>
+</svg>

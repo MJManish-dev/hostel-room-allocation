@@ -1,0 +1,373 @@
+/* css/map.css */
+
+/* Override default main width for the map page */
+main.map-layout {
+    max-width: 98%;
+    /* Wider container for the map */
+    padding: 0 1rem;
+    /* Reduce padding to maximize space */
+}
+
+/* Styles for the Navigation Panel in its new position */
+.navigation-panel {
+    display: flex;
+    flex-wrap: wrap;
+    /* Lets buttons wrap on small screens */
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    /* Space between it and the map */
+}
+
+/* Layout for map and info panel */
+.map-and-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+/* Use a stable width matching the SVG's design so content updates don't reflow the layout */
+.map-container {
+    flex: 0 0 800px; /* fixed base width matching SVG design */
+    min-width: 800px;
+}
+
+#room-info-panel {
+    flex: 0 0 320px; /* fixed right column width */
+    width: 320px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    height: fit-content;
+}
+
+#room-info-panel h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+/* SVG Styles */
+#hostel-map-svg {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.room-label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: #000;
+    text-anchor: middle;
+    pointer-events: none;
+    /* Makes text unclickable */
+}
+
+.map-label {
+    font-size: 12px;
+    fill: #555;
+    pointer-events: none;
+}
+
+/* --- This is the core logic --- */
+.room {
+    stroke: #333;
+    /* Black outline for all rooms */
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: fill 0.2s ease, stroke-width 0.2s ease;
+}
+
+/* The color coding! */
+.room.available {
+    fill: #4CAF50;
+    /* Green */
+}
+
+.room.available:hover {
+    fill: #81C784;
+    /* Lighter Green */
+}
+
+.room.partially-booked {
+    fill: #FFEB3B;
+    /* Yellow */
+}
+
+.room.partially-booked:hover {
+    fill: #FFF176;
+    /* Lighter Yellow */
+}
+
+.room.booked {
+    fill: #F44336;
+    /* Red */
+}
+
+.room.booked:hover {
+    fill: #E57373;
+    /* Lighter Red */
+}
+
+/* Special hover for the info panel status text */
+#room-info-panel .status-available {
+    color: #388E3C;
+    font-weight: 700;
+}
+
+#room-info-panel .status-partially-booked {
+    color: #FBC02D;
+    font-weight: 700;
+}
+
+#room-info-panel .status-booked {
+    color: #D32F2F;
+    font-weight: 700;
+}
+
+
+/* =========================
+== MODAL (POP-UP) STYLES ==
+=========================
+*/
+
+.modal-overlay {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/ opacity */
+
+    /* Used to center the modal content */
+    align-items: center;
+    justify-content: center;
+}
+
+/* This is the class JavaScript will add to show the modal */
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 25px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form Styles */
+#allocation-form .form-group {
+    margin-bottom: 1rem;
+}
+
+#allocation-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+#allocation-form input[type="text"] {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.form-buttons button {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-allocate {
+    background-color: #28a745;
+    /* Green */
+    color: white;
+}
+
+.btn-allocate:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    /* Red */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+    /* Add some space */
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+
+.modal-cancel-btn {
+    padding: 0.7rem 1.2rem;
+    /* same as .form-buttons button */
+    margin-bottom: 0;
+}
+
+/* Navigation Panel Styles */
+.navigation-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.navigation-panel strong {
+    margin-right: 0.5rem;
+}
+
+.floor-btn,
+.block-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.floor-btn.active,
+.block-btn.active {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+    font-weight: 700;
+}
+
+.remove-student-btn {
+    color: #cc0000;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0 5px;
+    cursor: pointer;
+    float: right;
+    transition: color 0.2s ease;
+}
+
+.remove-student-btn:hover {
+    color: #ff0000;
+}
+
+/* Make sure the list items in the info panel are styled correctly */
+#room-info-panel ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#room-info-panel li {
+    padding: 4px;
+    border-bottom: 1px solid #eee;
+}
+
+#download-csv-btn {
+    background-color: #28a745;
+    /* Green */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+    /* Add some space */
+}
+
+#download-csv-btn:hover {
+    background-color: #218838;
+}
+
+#backup-data-btn {
+    background-color: #f39c12;
+    /* Orange */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+#backup-data-btn:hover {
+    background-color: #e67e22;
+}
+
+#restore-data-btn {
+    background-color: #17a2b8;
+    /* Teal/Cyan */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+#restore-data-btn:hover {
+    background-color: #138496;
+}
